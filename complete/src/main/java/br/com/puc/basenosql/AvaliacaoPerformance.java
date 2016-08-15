@@ -316,9 +316,10 @@ public class AvaliacaoPerformance extends Neo4jConfiguration implements
 		Transaction tx = graphDatabase.beginTx();
 		try {
 			
-			engine.execute("MATCH produto-[:PERTENCE_A_UMA]->categoria "
-							+ "AND categoria.descricao='Jogos'"
-							+ "RETURN count(*); ");
+			engine.execute("MATCH pessoa-[:VENDEU_UM]->produto-[:PERTENCE_A_UMA]->categoria "
+					+ "WHERE NOT (pessoa-[:COMPROU_UM]->produto-[:PERTENCE_A_UMA]->categoria WHERE categoria.descricao='Jogos') "
+					+ "AND categoria.descricao='Celulares' AND pessoa.UF='RJ' "
+					+ "RETURN pessoa.nome, pessoa.email, pessoa.UF, categoria.descricao, count(*); ");
 			
 			tx.success();
 		} finally {
