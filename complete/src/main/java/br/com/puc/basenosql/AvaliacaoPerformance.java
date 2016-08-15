@@ -293,6 +293,38 @@ public class AvaliacaoPerformance extends Neo4jConfiguration implements
 			tx.close();
 		}
 	}
+	
+	/*public void consultarInformacoes() {
+		ExecutionEngine engine = new ExecutionEngine(graphDatabaseService());
+		
+		Transaction tx = graphDatabase.beginTx();
+		try {
+			
+			engine.execute("MATCH pessoa-[:VENDEU_UM]->produto-[:PERTENCE_A_UMA]->categoria "
+							+ "AND categoria.descricao='Celulares' AND pessoa.nome='Alessandra Soares' "
+							+ "RETURN count(*); ");
+			
+			tx.success();
+		} finally {
+			tx.close();
+		}
+	}*/
+	
+	/*public void consultarInformacoes() {
+		ExecutionEngine engine = new ExecutionEngine(graphDatabaseService());
+		
+		Transaction tx = graphDatabase.beginTx();
+		try {
+			
+			engine.execute("MATCH produto-[:PERTENCE_A_UMA]->categoria "
+							+ "AND categoria.descricao='Jogos'"
+							+ "RETURN count(*); ");
+			
+			tx.success();
+		} finally {
+			tx.close();
+		}
+	}*/
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(AvaliacaoPerformance.class, args);
